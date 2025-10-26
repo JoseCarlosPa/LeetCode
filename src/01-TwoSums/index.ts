@@ -12,6 +12,8 @@
  * Input: nums = [3,3], target = 6 Output: [0,1]
  **/
 
+
+// Optimal solution using a hash map O(n) time complexity
 export function twoSum(nums: number[], target: number): number[] {
     const map = new Map<number, number>();
     for (let i = 0; i < nums.length; i++) {
@@ -27,6 +29,32 @@ export function twoSum(nums: number[], target: number): number[] {
     return [];
 }
 
+// Direct solution with nested loops O(n^2) time complexity
+export function twoSumComplex(nums: number[], target: number): number[] {
+
+    const result: number[] = [];
+    if(nums.length < 2) return result;
+
+    for(let i = 0; i < nums.length; i++){
+        const numI = nums[i];
+        if(numI === undefined) continue;
+
+        for(let j = i + 1; j < nums.length; j++){
+            const numJ = nums[j];
+            if(numJ === undefined) continue;
+
+            if(numI + numJ === target){
+                result.push(i, j);
+                return result;
+            }
+        }
+    }
+
+    return result;
+}
+
 // Run code:
-console.log(twoSum([2, 7, 11, 15], 9));
-console.log(twoSum([3, 2, 4], 6));
+console.log(twoSum([2, 7, 11, 15], 9)); // [0, 1]
+console.log(twoSum([3, 2, 4], 6)); // [1, 2]
+console.log(twoSumComplex([2, 7, 11, 15], 9)); // [0, 1]
+console.log(twoSumComplex([3, 2, 4], 6)); // [1, 2]
