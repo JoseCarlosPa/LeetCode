@@ -1,4 +1,5 @@
 /**
+ *  Leetcode Problem 1: Two Sum
  *  Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to
  *  target.
  *
@@ -13,18 +14,18 @@
  **/
 
 
-// Optimal solution using a hash map O(n) time complexity
+// Optimal solution using a hash map O(n) time complexity: example [2,7,11,15], target = 9
 export function twoSum(nums: number[], target: number): number[] {
-    const map = new Map<number, number>();
+    const map = new Map<number, number>(); // {}
     for (let i = 0; i < nums.length; i++) {
-        const val = nums[i];
+        const val = nums[i]; // first iteration: val = 2, second iteration: val = 7
         if (val === undefined) continue;
-        const complement = target - val;
-        const idx = map.get(complement);
+        const complement = target - val; // first iteration: complement = 9 - 2 = 7, second iteration: complement = 9 - 7 = 2
+        const idx = map.get(complement); // first iteration: idx = map.get(7) => undefined, second iteration: idx = map.get(2) => 0
         if (idx !== undefined) {
-            return [idx, i];
+            return [idx, i]; // first iteration: not returned, second iteration: return [0, 1]
         }
-        map.set(val, i);
+        map.set(val, i); // first iteration: map.set(2, 0) => map = {2: 0} , second iteration: map.set(7, 1) => map = {2: 0, 7: 1}
     }
     return [];
 }
